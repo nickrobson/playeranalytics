@@ -4,5 +4,5 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'playeranalytics-forge'
+rootProject.name = 'PlayerAnalytics (Forge)'
 
