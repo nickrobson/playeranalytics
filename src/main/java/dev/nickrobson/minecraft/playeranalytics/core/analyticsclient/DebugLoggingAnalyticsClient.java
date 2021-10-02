@@ -1,13 +1,13 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.analyticsclient;
+package dev.nickrobson.minecraft.playeranalytics.core.analyticsclient;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.AnalyticsClient;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.Interaction;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionAttributes;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionPerformerId;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionAttributes;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionPerformerId;
+import dev.nickrobson.minecraft.playeranalytics.core.api.AnalyticsClient;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.Interaction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.api.InteractionController.toEventName;
+import static dev.nickrobson.minecraft.playeranalytics.core.api.InteractionController.toEventName;
 
 /**
  * Logs interactions to the console

@@ -1,9 +1,9 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.analyticsclient.amplitude;
+package dev.nickrobson.minecraft.playeranalytics.core.analyticsclient.amplitude;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.AnalyticsClient;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.Interaction;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionAttributes;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionPerformerId;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.Interaction;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionAttributes;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionPerformerId;
+import dev.nickrobson.minecraft.playeranalytics.core.api.AnalyticsClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

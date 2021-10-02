@@ -1,8 +1,8 @@
 package dev.nickrobson.minecraft.playeranalytics.forge;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.analyticsclient.DebugLoggingAnalyticsClient;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.analyticsclient.amplitude.AmplitudeAnalyticsClient;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.InteractionController;
+import dev.nickrobson.minecraft.playeranalytics.core.analyticsclient.DebugLoggingAnalyticsClient;
+import dev.nickrobson.minecraft.playeranalytics.core.analyticsclient.amplitude.AmplitudeAnalyticsClient;
+import dev.nickrobson.minecraft.playeranalytics.core.api.InteractionController;
 import dev.nickrobson.minecraft.playeranalytics.forge.listener.MinecraftForgeBlockListener;
 import dev.nickrobson.minecraft.playeranalytics.forge.listener.MinecraftForgeEntityListener;
 import dev.nickrobson.minecraft.playeranalytics.forge.listener.MinecraftForgeItemListener;

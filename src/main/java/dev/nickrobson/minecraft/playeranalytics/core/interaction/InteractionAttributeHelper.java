@@ -1,6 +1,6 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.interaction;
+package dev.nickrobson.minecraft.playeranalytics.core.interaction;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionAttributes;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionAttributes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;

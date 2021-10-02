@@ -1,6 +1,6 @@
 package dev.nickrobson.minecraft.playeranalytics.forge.listener;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.listener.MinecraftBlockInteractions;
+import dev.nickrobson.minecraft.playeranalytics.core.listener.MinecraftBlockInteractions;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;

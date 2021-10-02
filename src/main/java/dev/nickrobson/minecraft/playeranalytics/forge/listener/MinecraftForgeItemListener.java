@@ -1,6 +1,6 @@
 package dev.nickrobson.minecraft.playeranalytics.forge.listener;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.listener.MinecraftItemInteractions;
+import dev.nickrobson.minecraft.playeranalytics.core.listener.MinecraftItemInteractions;
 import dev.nickrobson.minecraft.playeranalytics.forge.PlayerAnalyticsMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BucketItem;
@@ -27,7 +27,7 @@ import net.minecraftforge.fluids.FluidUtil;
 
 import javax.annotation.Nullable;
 
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getItemStackType;
+import static dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionAttributeHelper.getItemStackType;
 import static dev.nickrobson.minecraft.playeranalytics.forge.listener.ForgeEventUtil.isEventCancelled;
 
 public class MinecraftForgeItemListener {

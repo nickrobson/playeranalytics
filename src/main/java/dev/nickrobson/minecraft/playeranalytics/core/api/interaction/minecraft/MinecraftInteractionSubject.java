@@ -1,4 +1,4 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.minecraft;
+package dev.nickrobson.minecraft.playeranalytics.core.api.interaction.minecraft;
 
 /**
  * Represents something from vanilla Minecraft that can be interacted with

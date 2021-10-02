@@ -1,4 +1,4 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction;
+package dev.nickrobson.minecraft.playeranalytics.core.api.interaction;
 
 /**
  * An ID for tracking what thing performed an interaction.

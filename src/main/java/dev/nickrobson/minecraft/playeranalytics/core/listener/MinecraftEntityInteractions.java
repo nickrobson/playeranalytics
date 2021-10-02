@@ -1,7 +1,9 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.listener;
+package dev.nickrobson.minecraft.playeranalytics.core.listener;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionAttributes;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.minecraft.MinecraftInteraction;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionAttributes;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.minecraft.MinecraftInteraction;
+import dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionAttributeHelper;
+import dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionEventHelper;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -10,17 +12,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getEntityType;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getItemStackType;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.populateDamageSourceAttributes;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionEventHelper.trackEntityInteraction;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionEventHelper.trackEntityInteractionWithActor;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionEventHelper.trackEntityInteractionWithSubject;
+import static dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionEventHelper.trackEntityInteraction;
+import static dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionEventHelper.trackEntityInteractionWithActor;
+import static dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionEventHelper.trackEntityInteractionWithSubject;
 
 public class MinecraftEntityInteractions {
 
     public static void onTeleport(Entity entity, TeleportCause teleportCause) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 entity,
                 MinecraftInteraction.ENTITY_TELEPORTED,
                 new InteractionAttributes()
@@ -29,11 +28,11 @@ public class MinecraftEntityInteractions {
     }
 
     public static void onAnimalTame(Player player, Animal animal) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.ANIMAL_TAMED,
                 new InteractionAttributes()
-                        .set("type", getEntityType(animal))
+                        .set("type", InteractionAttributeHelper.getEntityType(animal))
         );
     }
 
@@ -47,11 +46,11 @@ public class MinecraftEntityInteractions {
         if (child == null)
             return;
 
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 causedByPlayer,
                 MinecraftInteraction.ANIMAL_BRED,
                 new InteractionAttributes()
-                        .set("type", getEntityType(child))
+                        .set("type", InteractionAttributeHelper.getEntityType(child))
         );
     }
 
@@ -64,18 +63,18 @@ public class MinecraftEntityInteractions {
         if (slot == EquipmentSlot.MAINHAND || slot == EquipmentSlot.OFFHAND)
             return;
 
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 entity,
                 MinecraftInteraction.ENTITY_EQUIPPED,
                 new InteractionAttributes()
                         .set("slot", slot.getName())
-                        .set("from", getItemStackType(oldItemStack))
-                        .set("to", getItemStackType(newItemStack))
+                        .set("from", InteractionAttributeHelper.getItemStackType(oldItemStack))
+                        .set("to", InteractionAttributeHelper.getItemStackType(newItemStack))
         );
     }
 
     public static void onStruckByLightning(Entity entity) {
-        trackEntityInteractionWithSubject(
+        InteractionEventHelper.trackEntityInteractionWithSubject(
                 entity,
                 MinecraftInteraction.ENTITY_STRUCK_BY_LIGHTNING
         );
@@ -85,7 +84,7 @@ public class MinecraftEntityInteractions {
     // So we're disabling this because of the spam :(
     // Maybe one day we'll be able to add support for other entity types using a config!
     public static void onPlayerHeal(Player player, double amount) {
-        trackEntityInteractionWithSubject(
+        InteractionEventHelper.trackEntityInteractionWithSubject(
                 player,
                 MinecraftInteraction.ENTITY_HEALED,
                 new InteractionAttributes()
@@ -94,7 +93,7 @@ public class MinecraftEntityInteractions {
     }
 
     public static void onEntityAttack(Player attacker, Entity target) {
-        trackEntityInteraction(
+        InteractionEventHelper.trackEntityInteraction(
                 attacker,
                 target,
                 MinecraftInteraction.ENTITY_ATTACKED
@@ -113,9 +112,9 @@ public class MinecraftEntityInteractions {
         InteractionAttributes attributes = new InteractionAttributes()
                 .set("amount", amount);
 
-        populateDamageSourceAttributes(damageSource, attributes);
+        InteractionAttributeHelper.populateDamageSourceAttributes(damageSource, attributes);
 
-        trackEntityInteraction(
+        InteractionEventHelper.trackEntityInteraction(
                 damageSource.getEntity(),
                 entity,
                 MinecraftInteraction.ENTITY_DAMAGED,
@@ -133,9 +132,9 @@ public class MinecraftEntityInteractions {
 
         InteractionAttributes attributes = new InteractionAttributes();
 
-        populateDamageSourceAttributes(damageSource, attributes);
+        InteractionAttributeHelper.populateDamageSourceAttributes(damageSource, attributes);
 
-        trackEntityInteraction(
+        InteractionEventHelper.trackEntityInteraction(
                 damageSource.getEntity(),
                 entity,
                 MinecraftInteraction.ENTITY_DIED,
@@ -155,11 +154,11 @@ public class MinecraftEntityInteractions {
     }
 
     public static void onProjectileImpact(Projectile projectile) {
-        trackEntityInteraction(
+        InteractionEventHelper.trackEntityInteraction(
                 projectile.getOwner(),
                 projectile,
                 MinecraftInteraction.PROJECTILE_IMPACTED,
-                new InteractionAttributes().set("type", getEntityType(projectile))
+                new InteractionAttributes().set("type", InteractionAttributeHelper.getEntityType(projectile))
         );
     }
 

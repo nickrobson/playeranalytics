@@ -1,8 +1,9 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.listener;
+package dev.nickrobson.minecraft.playeranalytics.core.listener;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionAttributes;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.minecraft.MinecraftInteraction;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionEventHelper;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionAttributes;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.minecraft.MinecraftInteraction;
+import dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionAttributeHelper;
+import dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionEventHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -12,10 +13,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getBlockAttributes;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getContainerAttributes;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getItemStackType;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getToolType;
+import static dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionAttributeHelper.getBlockAttributes;
+import static dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionAttributeHelper.getToolType;
 
 public class MinecraftBlockInteractions {
     private static final String ATTRIBUTE_ITEM_TYPE = "itemType";
@@ -25,7 +24,7 @@ public class MinecraftBlockInteractions {
         InteractionEventHelper.trackEntityInteractionWithActor(
                 entity,
                 MinecraftInteraction.BLOCK_PLACED,
-                getBlockAttributes(blockState)
+                InteractionAttributeHelper.getBlockAttributes(blockState)
         );
     }
 
@@ -33,7 +32,7 @@ public class MinecraftBlockInteractions {
         InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.BLOCK_BROKEN,
-                getBlockAttributes(blockState)
+                InteractionAttributeHelper.getBlockAttributes(blockState)
         );
     }
 
@@ -46,8 +45,8 @@ public class MinecraftBlockInteractions {
         InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.BLOCK_RIGHT_CLICKED,
-                getBlockAttributes(blockState)
-                        .set(ATTRIBUTE_ITEM_TYPE, getItemStackType(itemStack))
+                InteractionAttributeHelper.getBlockAttributes(blockState)
+                        .set(ATTRIBUTE_ITEM_TYPE, InteractionAttributeHelper.getItemStackType(itemStack))
         );
     }
 
@@ -55,8 +54,8 @@ public class MinecraftBlockInteractions {
         InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.BLOCK_RIGHT_CLICKED,
-                getBlockAttributes(blockState)
-                        .set(ATTRIBUTE_TOOL_TYPE, getToolType(itemStack))
+                InteractionAttributeHelper.getBlockAttributes(blockState)
+                        .set(ATTRIBUTE_TOOL_TYPE, InteractionAttributeHelper.getToolType(itemStack))
         );
     }
 
@@ -64,7 +63,7 @@ public class MinecraftBlockInteractions {
         InteractionEventHelper.trackEntityInteractionWithActor(
                 entity,
                 MinecraftInteraction.BLOCK_TRAMPLED,
-                getBlockAttributes(blockState)
+                InteractionAttributeHelper.getBlockAttributes(blockState)
                         .set("fallDistance", fallDistance)
         );
     }
@@ -73,8 +72,8 @@ public class MinecraftBlockInteractions {
         InteractionEventHelper.trackEntityInteractionWithActor(
                 entity,
                 MinecraftInteraction.BLOCK_BONEMEALED,
-                getBlockAttributes(blockState)
-                        .set(ATTRIBUTE_ITEM_TYPE, getItemStackType(itemStack))
+                InteractionAttributeHelper.getBlockAttributes(blockState)
+                        .set(ATTRIBUTE_ITEM_TYPE, InteractionAttributeHelper.getItemStackType(itemStack))
         );
     }
 
@@ -82,7 +81,7 @@ public class MinecraftBlockInteractions {
         InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.CONTAINER_OPENED,
-                getContainerAttributes(containerMenu)
+                InteractionAttributeHelper.getContainerAttributes(containerMenu)
         );
     }
 
@@ -94,7 +93,7 @@ public class MinecraftBlockInteractions {
         InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.CONTAINER_CLOSED,
-                getContainerAttributes(containerMenu)
+                InteractionAttributeHelper.getContainerAttributes(containerMenu)
         );
     }
 

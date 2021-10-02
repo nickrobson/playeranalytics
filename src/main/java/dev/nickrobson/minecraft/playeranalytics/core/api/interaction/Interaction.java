@@ -1,4 +1,4 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction;
+package dev.nickrobson.minecraft.playeranalytics.core.api.interaction;
 
 import javax.annotation.Nonnull;
 

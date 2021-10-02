@@ -1,6 +1,6 @@
 package dev.nickrobson.minecraft.playeranalytics.forge.listener;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.listener.MinecraftEntityInteractions;
+import dev.nickrobson.minecraft.playeranalytics.core.listener.MinecraftEntityInteractions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
@@ -13,7 +13,6 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 

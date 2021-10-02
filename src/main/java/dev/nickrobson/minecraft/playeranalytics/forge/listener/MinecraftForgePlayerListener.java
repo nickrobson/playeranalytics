@@ -1,6 +1,6 @@
 package dev.nickrobson.minecraft.playeranalytics.forge.listener;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.listener.MinecraftPlayerInteractions;
+import dev.nickrobson.minecraft.playeranalytics.core.listener.MinecraftPlayerInteractions;
 import net.minecraft.world.InteractionResult;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;

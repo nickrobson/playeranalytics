@@ -1,4 +1,4 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core;
+package dev.nickrobson.minecraft.playeranalytics.core;
 
 public interface PlayerAnalyticsConstants {
 

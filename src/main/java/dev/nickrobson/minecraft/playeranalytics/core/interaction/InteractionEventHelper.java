@@ -1,9 +1,9 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.interaction;
+package dev.nickrobson.minecraft.playeranalytics.core.interaction;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.InteractionController;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.Interaction;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionAttributes;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionPerformerId;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionPerformerId;
+import dev.nickrobson.minecraft.playeranalytics.core.api.InteractionController;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.Interaction;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionAttributes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -12,13 +12,7 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getBiomeCategory;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getBiomeId;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getDimensionId;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getEntityDisplayName;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getEntityName;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getEntityType;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getPlayerName;
+import static dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionAttributeHelper.getDimensionId;
 
 public final class InteractionEventHelper {
     private InteractionEventHelper() {
@@ -110,18 +104,18 @@ public final class InteractionEventHelper {
     public static void populateEntityAttributes(@Nonnull Entity entity, @Nonnull InteractionAttributes attributes, @Nonnull String prefix) {
         // Fill player name attribute with the player's name for all interactions involving players
         if (entity instanceof Player) {
-            attributes.set(prefix + "PlayerName", getPlayerName((Player) entity));
+            attributes.set(prefix + "PlayerName", InteractionAttributeHelper.getPlayerName((Player) entity));
         }
-        attributes.set(prefix + "DisplayName", getEntityDisplayName(entity));
-        attributes.set(prefix + "Name", getEntityName(entity));
-        attributes.set(prefix + "Type", getEntityType(entity));
+        attributes.set(prefix + "DisplayName", InteractionAttributeHelper.getEntityDisplayName(entity));
+        attributes.set(prefix + "Name", InteractionAttributeHelper.getEntityName(entity));
+        attributes.set(prefix + "Type", InteractionAttributeHelper.getEntityType(entity));
     }
 
     public static void populateLocationAttributes(@Nonnull Level level, @Nonnull BlockPos blockPos, @Nonnull InteractionAttributes attributes) {
-        attributes.set("dimension", getDimensionId(level));
+        attributes.set("dimension", InteractionAttributeHelper.getDimensionId(level));
 
-        attributes.set("biomeCategory", getBiomeCategory(level, blockPos));
-        getBiomeId(level, blockPos).ifPresent(
+        attributes.set("biomeCategory", InteractionAttributeHelper.getBiomeCategory(level, blockPos));
+        InteractionAttributeHelper.getBiomeId(level, blockPos).ifPresent(
                 biomeId -> attributes.set("biome", biomeId)
         );
     }

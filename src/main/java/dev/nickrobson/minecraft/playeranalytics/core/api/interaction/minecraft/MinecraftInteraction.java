@@ -1,13 +1,13 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.minecraft;
+package dev.nickrobson.minecraft.playeranalytics.core.api.interaction.minecraft;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.Interaction;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.Interaction;
 import org.apache.logging.log4j.message.ParameterizedMessage;
 
 import javax.annotation.Nonnull;
 import java.util.HashSet;
 import java.util.Set;
 
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.api.InteractionController.toEventName;
+import static dev.nickrobson.minecraft.playeranalytics.core.api.InteractionController.toEventName;
 
 public enum MinecraftInteraction implements Interaction {
     // ------------------

@@ -1,7 +1,8 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.listener;
+package dev.nickrobson.minecraft.playeranalytics.core.listener;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionAttributes;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.minecraft.MinecraftInteraction;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionAttributes;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.minecraft.MinecraftInteraction;
+import dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionEventHelper;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -15,8 +16,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionEventHelper.trackEntityInteractionWithActor;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionEventHelper.trackServerInteraction;
+import static dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionEventHelper.trackEntityInteractionWithActor;
 
 public class MinecraftPotionInteractions {
 
@@ -24,7 +24,7 @@ public class MinecraftPotionInteractions {
         for (int i = 0; i < itemStacks.length; i++) {
             ItemStack itemStack = itemStacks[i];
             if (itemStack.getItem() instanceof PotionItem) {
-                trackServerInteraction(
+                InteractionEventHelper.trackServerInteraction(
                         MinecraftInteraction.POTION_BREWED,
                         getEffectAttributes(itemStack)
                                 .set("slot", i)
@@ -34,7 +34,7 @@ public class MinecraftPotionInteractions {
     }
 
     public static void onPlayerCollectPotion(Player player, ItemStack itemStack) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.POTION_COLLECTED,
                 getEffectAttributes(itemStack)
@@ -44,7 +44,7 @@ public class MinecraftPotionInteractions {
     // This is fired when mobs with potion effects spawn, and Minecolonies settlers also spam this :(
     // Maybe one day there'll be a config for this to support more entities...
     public static void onPotionAdded(Player player, MobEffectInstance mobEffect) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.POTION_EFFECT_ADDED,
                 getEffectAttributes(mobEffect)
@@ -54,7 +54,7 @@ public class MinecraftPotionInteractions {
     // Minecolonies settlers also spam this :(
     // Maybe one day there'll be a config for this to support more entities...
     public static void onPotionRemoved(Player player, MobEffectInstance mobEffect) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.POTION_EFFECT_REMOVED,
                 mobEffect == null
@@ -64,7 +64,7 @@ public class MinecraftPotionInteractions {
     }
 
     public static void onPotionExpired(Player player, MobEffectInstance mobEffect) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.POTION_EFFECT_EXPIRED,
                 mobEffect == null

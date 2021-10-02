@@ -1,8 +1,8 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.api;
+package dev.nickrobson.minecraft.playeranalytics.core.api;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.Interaction;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionAttributes;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionPerformerId;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.Interaction;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionAttributes;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionPerformerId;
 
 /**
  * Represents a client for an analytics service

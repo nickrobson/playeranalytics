@@ -1,7 +1,9 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.listener;
+package dev.nickrobson.minecraft.playeranalytics.core.listener;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionAttributes;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.minecraft.MinecraftInteraction;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionAttributes;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.minecraft.MinecraftInteraction;
+import dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionAttributeHelper;
+import dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionEventHelper;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
@@ -9,28 +11,27 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getDimensionId;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getItemStackType;
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionEventHelper.trackEntityInteractionWithActor;
+import static dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionAttributeHelper.getDimensionId;
+import static dev.nickrobson.minecraft.playeranalytics.core.interaction.InteractionEventHelper.trackEntityInteractionWithActor;
 
 public class MinecraftPlayerInteractions {
 
     public static void onLogIn(Player player) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.PLAYER_CONNECTED
         );
     }
 
     public static void onLogOut(Player player) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.PLAYER_DISCONNECTED
         );
     }
 
     public static void onChat(Player player, String message) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.PLAYER_CHATTED,
                 new InteractionAttributes()
@@ -39,38 +40,38 @@ public class MinecraftPlayerInteractions {
     }
 
     public static void onChangeDimension(Player player, ResourceKey<Level> from, ResourceKey<Level> to) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.PLAYER_CHANGED_DIMENSION,
                 new InteractionAttributes()
-                        .set("from", getDimensionId(from))
-                        .set("to", getDimensionId(to))
+                        .set("from", InteractionAttributeHelper.getDimensionId(from))
+                        .set("to", InteractionAttributeHelper.getDimensionId(to))
         );
     }
 
     public static void onTriggerVillageSiege(Player player) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.VILLAGE_SIEGE_TRIGGERED
         );
     }
 
     public static void onRespawn(Player player) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.PLAYER_RESPAWNED
         );
     }
 
     public static void onSleep(Player player) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.PLAYER_SLEPT
         );
     }
 
     public static void onWakeUp(Player player) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.PLAYER_WOKE_UP
         );
@@ -80,7 +81,7 @@ public class MinecraftPlayerInteractions {
         if (levelChange == 0)
             return;
 
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.PLAYER_XP_LEVEL_CHANGED,
                 new InteractionAttributes()
@@ -94,7 +95,7 @@ public class MinecraftPlayerInteractions {
         if (experience == 0)
             return;
 
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.PLAYER_XP_CHANGED,
                 new InteractionAttributes()
@@ -105,7 +106,7 @@ public class MinecraftPlayerInteractions {
     }
 
     public static void onGainAdvancement(Player player, Advancement advancement) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.ADVANCEMENT_GAINED,
                 new InteractionAttributes()
@@ -114,21 +115,21 @@ public class MinecraftPlayerInteractions {
     }
 
     public static void onArrowLoose(Player player, ItemStack bow, int charge) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.ARROW_LOOSED,
                 new InteractionAttributes()
-                        .set("bowType", getItemStackType(bow))
+                        .set("bowType", InteractionAttributeHelper.getItemStackType(bow))
                         .set("charge", charge)
         );
     }
 
     public static void onArrowNock(Player player, ItemStack bow) {
-        trackEntityInteractionWithActor(
+        InteractionEventHelper.trackEntityInteractionWithActor(
                 player,
                 MinecraftInteraction.ARROW_NOCKED,
                 new InteractionAttributes()
-                        .set("bowType", getItemStackType(bow))
+                        .set("bowType", InteractionAttributeHelper.getItemStackType(bow))
         );
     }
 }

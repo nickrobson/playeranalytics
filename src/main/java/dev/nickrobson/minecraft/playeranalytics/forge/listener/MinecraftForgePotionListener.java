@@ -1,6 +1,6 @@
 package dev.nickrobson.minecraft.playeranalytics.forge.listener;
 
-import dev.nickrobson.minecraft.playeranalytics.forge.core.listener.MinecraftPotionInteractions;
+import dev.nickrobson.minecraft.playeranalytics.core.listener.MinecraftPotionInteractions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.brewing.PlayerBrewedPotionEvent;

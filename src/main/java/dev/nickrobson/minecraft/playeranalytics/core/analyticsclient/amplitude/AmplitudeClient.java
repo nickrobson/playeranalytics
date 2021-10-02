@@ -1,12 +1,12 @@
-package dev.nickrobson.minecraft.playeranalytics.forge.core.analyticsclient.amplitude;
+package dev.nickrobson.minecraft.playeranalytics.core.analyticsclient.amplitude;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.PlayerAnalyticsConstants;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.Interaction;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionAttributes;
-import dev.nickrobson.minecraft.playeranalytics.forge.core.api.interaction.InteractionPerformerId;
+import dev.nickrobson.minecraft.playeranalytics.core.PlayerAnalyticsConstants;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.Interaction;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionAttributes;
+import dev.nickrobson.minecraft.playeranalytics.core.api.interaction.InteractionPerformerId;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +19,7 @@ import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
 
-import static dev.nickrobson.minecraft.playeranalytics.forge.core.api.InteractionController.toEventName;
+import static dev.nickrobson.minecraft.playeranalytics.core.api.InteractionController.toEventName;
 
 public class AmplitudeClient {
     public static final Logger logger = LogManager.getLogger(AmplitudeClient.class);
