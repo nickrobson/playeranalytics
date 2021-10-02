@@ -14,10 +14,15 @@ import net.minecraftforge.event.village.VillageSiegeEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+import static dev.nickrobson.minecraft.playeranalytics.forge.listener.ForgeEventUtil.isEventCancelled;
+
 public class MinecraftForgePlayerListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onPlayerLogIn(PlayerEvent.PlayerLoggedInEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftPlayerInteractions.onLogIn(
                 event.getPlayer()
         );
@@ -25,6 +30,9 @@ public class MinecraftForgePlayerListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onPlayerLogOut(PlayerEvent.PlayerLoggedOutEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftPlayerInteractions.onLogOut(
                 event.getPlayer()
         );
@@ -32,6 +40,9 @@ public class MinecraftForgePlayerListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onPlayerChat(ServerChatEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftPlayerInteractions.onChat(
                 event.getPlayer(),
                 event.getMessage()
@@ -40,6 +51,9 @@ public class MinecraftForgePlayerListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftPlayerInteractions.onChangeDimension(
                 event.getPlayer(),
                 event.getFrom(),
@@ -49,6 +63,9 @@ public class MinecraftForgePlayerListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onTriggerVillageSiege(VillageSiegeEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftPlayerInteractions.onTriggerVillageSiege(
                 event.getPlayer()
         );
@@ -56,6 +73,9 @@ public class MinecraftForgePlayerListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftPlayerInteractions.onRespawn(
                 event.getPlayer()
         );
@@ -63,6 +83,9 @@ public class MinecraftForgePlayerListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onSleep(PlayerSleepInBedEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftPlayerInteractions.onSleep(
                 event.getPlayer()
         );
@@ -70,6 +93,9 @@ public class MinecraftForgePlayerListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onWakeUp(PlayerWakeUpEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftPlayerInteractions.onWakeUp(
                 event.getPlayer()
         );
@@ -77,6 +103,9 @@ public class MinecraftForgePlayerListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onXpLevelChange(PlayerXpEvent.LevelChange event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftPlayerInteractions.onXpLevelChange(
                 event.getPlayer(),
                 event.getLevels()
@@ -85,6 +114,9 @@ public class MinecraftForgePlayerListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onXpChange(PlayerXpEvent.XpChange event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftPlayerInteractions.onXpChange(
                 event.getPlayer(),
                 event.getAmount()
@@ -93,6 +125,9 @@ public class MinecraftForgePlayerListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onGainAdvancement(AdvancementEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftPlayerInteractions.onGainAdvancement(
                 event.getPlayer(),
                 event.getAdvancement()
@@ -101,6 +136,9 @@ public class MinecraftForgePlayerListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onArrowLoose(ArrowLooseEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftPlayerInteractions.onArrowLoose(
                 event.getPlayer(),
                 event.getBow(),
@@ -110,6 +148,9 @@ public class MinecraftForgePlayerListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onArrowNock(ArrowNockEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         if (event.getAction().getResult() == InteractionResult.FAIL)
             return;
 

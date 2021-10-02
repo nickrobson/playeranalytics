@@ -28,11 +28,15 @@ import net.minecraftforge.fluids.FluidUtil;
 import javax.annotation.Nullable;
 
 import static dev.nickrobson.minecraft.playeranalytics.forge.core.interaction.InteractionAttributeHelper.getItemStackType;
+import static dev.nickrobson.minecraft.playeranalytics.forge.listener.ForgeEventUtil.isEventCancelled;
 
 public class MinecraftForgeItemListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onAnvilRepair(AnvilRepairEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftItemInteractions.onAnvilRepair(
                 event.getPlayer(),
                 event.getItemInput(),
@@ -43,6 +47,9 @@ public class MinecraftForgeItemListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onItemPickup(PlayerEvent.ItemPickupEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftItemInteractions.onItemPickup(
                 event.getPlayer(),
                 event.getStack()
@@ -51,6 +58,9 @@ public class MinecraftForgeItemListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onItemToss(ItemTossEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftItemInteractions.onItemToss(
                 event.getPlayer(),
                 event.getEntityItem().getItem()
@@ -59,6 +69,9 @@ public class MinecraftForgeItemListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onItemCraft(PlayerEvent.ItemCraftedEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftItemInteractions.onItemCraft(
                 event.getPlayer(),
                 event.getCrafting()
@@ -67,6 +80,9 @@ public class MinecraftForgeItemListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onItemSmelt(PlayerEvent.ItemSmeltedEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftItemInteractions.onItemSmelt(
                 event.getPlayer(),
                 event.getSmelting()
@@ -75,6 +91,9 @@ public class MinecraftForgeItemListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onItemFish(ItemFishedEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         event.getDrops().forEach(itemStack ->
                 MinecraftItemInteractions.onItemFish(
                         event.getPlayer(),
@@ -85,6 +104,9 @@ public class MinecraftForgeItemListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onItemUse(LivingEntityUseItemEvent.Finish event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftItemInteractions.onItemUse(
                 event.getEntity(),
                 event.getItem()
@@ -93,6 +115,9 @@ public class MinecraftForgeItemListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onItemDestroy(PlayerDestroyItemEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftItemInteractions.onItemDestroy(
                 event.getPlayer(),
                 event.getOriginal()
@@ -101,6 +126,9 @@ public class MinecraftForgeItemListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onItemRightClick(PlayerInteractEvent.RightClickItem event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftItemInteractions.onItemRightClick(
                 event.getPlayer(),
                 event.getItemStack()
@@ -109,6 +137,9 @@ public class MinecraftForgeItemListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftItemInteractions.onRightClickBlock(
                 event.getPlayer(),
                 event.getItemStack(),
@@ -118,6 +149,9 @@ public class MinecraftForgeItemListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onRightClickEntity(PlayerInteractEvent.EntityInteractSpecific event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftItemInteractions.onRightClickEntity(
                 event.getPlayer(),
                 event.getItemStack(),
@@ -130,6 +164,9 @@ public class MinecraftForgeItemListener {
     // disabled for now because it's broken!!
     // @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onBucketUse(FillBucketEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         if (event.getWorld().isClientSide) return; // TEMP
         HitResult rayTraceResult = event.getTarget();
         if (rayTraceResult == null || rayTraceResult.getType() == HitResult.Type.MISS)

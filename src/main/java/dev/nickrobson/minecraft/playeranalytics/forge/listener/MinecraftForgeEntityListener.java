@@ -13,13 +13,19 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import static dev.nickrobson.minecraft.playeranalytics.forge.listener.ForgeEventUtil.isEventCancelled;
 
 public class MinecraftForgeEntityListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onTeleport(EntityTeleportEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftEntityInteractions.TeleportCause teleportCause = MinecraftEntityInteractions.TeleportCause.UNKNOWN;
         if (event instanceof EntityTeleportEvent.ChorusFruit) {
             teleportCause = MinecraftEntityInteractions.TeleportCause.CHORUS_FRUIT;
@@ -36,11 +42,17 @@ public class MinecraftForgeEntityListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onAnimalTame(AnimalTameEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftEntityInteractions.onAnimalTame(event.getTamer(), event.getAnimal());
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onBabyEntitySpawn(BabyEntitySpawnEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftEntityInteractions.onBabyEntitySpawn(
                 event.getCausedByPlayer(),
                 event.getParentA(),
@@ -51,6 +63,9 @@ public class MinecraftForgeEntityListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingEntityEquip(LivingEquipmentChangeEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftEntityInteractions.onLivingEntityEquip(
                 event.getEntity(),
                 event.getSlot(),
@@ -61,6 +76,9 @@ public class MinecraftForgeEntityListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onStruckByLightning(EntityStruckByLightningEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftEntityInteractions.onStruckByLightning(
                 event.getEntity()
         );
@@ -68,6 +86,9 @@ public class MinecraftForgeEntityListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingEntityHeal(LivingHealEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         if (!(event.getEntity() instanceof Player))
             // Mowzie's Mobs' Ferrous Wroughtnaut sends 20 heal events a second!
             // So we're disabling this because of the spam :(
@@ -82,6 +103,9 @@ public class MinecraftForgeEntityListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onEntityAttack(AttackEntityEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftEntityInteractions.onEntityAttack(
                 event.getPlayer(),
                 event.getTarget()
@@ -90,6 +114,9 @@ public class MinecraftForgeEntityListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingEntityDamaged(LivingDamageEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftEntityInteractions.onLivingEntityDamaged(
                 event.getEntity(),
                 event.getAmount(),
@@ -99,6 +126,9 @@ public class MinecraftForgeEntityListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingEntityDeath(LivingDeathEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftEntityInteractions.onLivingEntityDeath(
                 event.getEntity(),
                 event.getSource()
@@ -107,6 +137,9 @@ public class MinecraftForgeEntityListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onProjectileImpact(ProjectileImpactEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         if (!(event.getEntity() instanceof Projectile))
             return;
 

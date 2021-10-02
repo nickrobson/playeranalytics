@@ -10,9 +10,14 @@ import net.minecraftforge.event.world.NoteBlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+import static dev.nickrobson.minecraft.playeranalytics.forge.listener.ForgeEventUtil.isEventCancelled;
+
 public class MinecraftForgeBlockListener {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onBlockPlace(BlockEvent.EntityPlaceEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftBlockInteractions.onBlockPlace(
                 event.getEntity(),
                 event.getPlacedBlock()
@@ -21,6 +26,9 @@ public class MinecraftForgeBlockListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onBlockMultiPlace(BlockEvent.EntityMultiPlaceEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftBlockInteractions.onBlockPlace(
                 event.getEntity(),
                 event.getPlacedBlock()
@@ -29,6 +37,9 @@ public class MinecraftForgeBlockListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftBlockInteractions.onBlockBreak(
                 event.getPlayer(),
                 event.getState()
@@ -37,6 +48,9 @@ public class MinecraftForgeBlockListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftBlockInteractions.onRightClickBlock(
                 event.getPlayer(),
                 event.getWorld().getBlockState(event.getPos()),
@@ -46,6 +60,9 @@ public class MinecraftForgeBlockListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onBlockToolInteract(BlockEvent.BlockToolInteractEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftBlockInteractions.onBlockToolInteract(
                 event.getPlayer(),
                 event.getState(),
@@ -60,6 +77,9 @@ public class MinecraftForgeBlockListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onFarmlandTrample(BlockEvent.FarmlandTrampleEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftBlockInteractions.onFarmlandTrample(
                 event.getEntity(),
                 event.getState(),
@@ -69,6 +89,9 @@ public class MinecraftForgeBlockListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onBonemeal(BonemealEvent event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftBlockInteractions.onBonemeal(
                 event.getEntity(),
                 event.getBlock(),
@@ -78,6 +101,9 @@ public class MinecraftForgeBlockListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onContainerOpen(PlayerContainerEvent.Open event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftBlockInteractions.onContainerOpen(
                 event.getPlayer(),
                 event.getContainer()
@@ -86,6 +112,9 @@ public class MinecraftForgeBlockListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onContainerClose(PlayerContainerEvent.Close event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftBlockInteractions.onContainerClose(
                 event.getPlayer(),
                 event.getContainer()
@@ -94,6 +123,9 @@ public class MinecraftForgeBlockListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onNoteBlockPlay(NoteBlockEvent.Play event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftBlockInteractions.onNoteBlockPlay(
                 event.getInstrument(),
                 event.getVanillaNoteId()
@@ -102,6 +134,9 @@ public class MinecraftForgeBlockListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onNoteBlockChange(NoteBlockEvent.Change event) {
+        if (isEventCancelled(event))
+            return;
+
         MinecraftBlockInteractions.onNoteBlockChange(
                 event.getVanillaNoteId()
         );
